@@ -1,0 +1,20 @@
+{# Project: RegisVac #}
+{# メニュー画面 #}
+
+{% extends "base.html" %}
+
+{% block title %}ワクチン予約{% endblock %}
+
+
+{% block content %}
+    <br>
+    <div class="container">
+        <h2>ワクチン予約サイトへようこそ</h2>
+    </div>
+
+    {# 操作者一覧ボタン #}
+    <div class="col-md-offset-1 col-md-1">
+        <a href="{% url 'main:operator_new' %}" class="btn btn-primary btn-sm">操作者一覧</a>
+    </div>
+
+{% endblock %}

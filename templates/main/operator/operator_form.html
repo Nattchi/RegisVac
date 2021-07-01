@@ -1,0 +1,39 @@
+{# Project: RegisVac #}
+
+{% extends "base.html" %}
+{% block title %}操作者登録画面-RegisVac{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h4 class="mt-4 border-bottom">操作者登録画面</h4>
+
+        <form method="post" action="">
+            {% csrf_token %}
+            <table class="table table-striped">
+                {{ form }}
+            </table>
+            <table class="table table-striped">
+                {{ operator_form }}
+            </table>
+
+            <table class="table">
+                <tr>
+                    <td style="width:20%;">
+                        <input type="submit" value="保存" id="submit_btn" class="btn btn-primary">
+                    </td>
+                    <td style="width:20%;"></td>
+                    <td style="width:20%;">
+                        {# 戻るボタン #}
+                        <a id="top" href="{% url 'main:operator_list' %}" class="btn btn-secondary btn-sm">戻る</a>
+                    </td>
+                    <td style="width:40%;"></td>
+                </tr>
+            </table>
+        </form>
+        <br/>
+
+    </div>
+    <br/>
+    <br/>
+{% endblock %}
+
