@@ -30,7 +30,15 @@
 
 <body>
     <div class="d-flex flex-column flex-md-row align-items-center p-1 px-md-4 mb-1 bg-white border-bottom shadow-sm">
-        <h5 class="my-0 mr-md-auto font-weight-normal">RegisVac</h5>
+        <h5 class="my-0 mr-md-auto font-weight-normal"><a href="{% url 'home' %}">RegisVac</a></h5>
+
+        <nav class="my-2 my-md-0 mr-md-3">
+            {% if user.is_authenticated %}
+                <a class="btn btn-outline-primary btn-sm mr-2" href="{% url 'account_logout' %}">ログアウト</a>
+            {% else %}
+                <a class="btn btn-outline-primary btn-sm mr-2" id="login_button" href="{% url 'account_login' %}">ログイン</a>
+            {% endif %}
+        </nav>
     </div>
 
     <div class="container-fluid">

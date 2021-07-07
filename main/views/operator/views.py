@@ -5,6 +5,7 @@ from django.views import generic
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.models import Group, User
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from main.forms.operator.forms import MyUserCreationForm, OperatorCreationForm, OperatorRemoveForm
 
@@ -12,7 +13,7 @@ app_name = 'main'
 
 
 # 一覧画面
-class OperatorListView(generic.ListView):
+class OperatorListView(LoginRequiredMixin, generic.ListView):
     model = User
     template_name = "main/operator/operator_list.html"
     object_list = User.objects.order_by('username')
