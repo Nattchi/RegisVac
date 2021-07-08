@@ -1,8 +1,9 @@
 __pycache__/
+
 *.pyc
 
-.gitignore
 .idea/
 
 regisvac_env/
-db.sqlie3
+
+db.sqlite3
