@@ -5,17 +5,51 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Sign Up" %}</h1>
+<div class="container-fluid">
+  <h1>{% trans "新規登録" %}</h1>
+</div>
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+<div class="container-fluid">
+  <p class="alert alert-warning">
+    <strong>注意! </strong>
+    {% blocktrans %}
+    もう既にアカウントをお持ちですか？でしたら<a href="{{ login_url }}"> ログイン </a>をしてください。
+    {% endblocktrans %}
+  </p>
+</div>
 
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
+<div class="container-fluid">
+  <form class="was-validated" id="signup_form" method="post" action="{% url 'account_signup' %}">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="id_username">ユーザー名:</label>
+      <input type="text" class="form-control" name="username" placeholder="ユーザー名を入力してください。" autocomplete="username" minlength="1" maxlength="150" required="" id="id_username">
+      <div class="valid-feedback">有効な入力です。</div>
+      <div class="invalid-feedback">このフィールドは入力必須です。</div>
+    </div>
+    <div class="form-group">
+      <label for="id_email">E-mail アドレス (任意):</label>
+      <input type="email" class="form-control" name="email" placeholder="E-mail アドレスを入力してください。(任意)" autocomplete="email" id="id_email">
+      <div class="valid-feedback">有効な入力です。</div>
+      <div class="invalid-feedback">無効な E-mail アドレスです。</div>
+    </div>
+    <div class="form-group">
+      <label for="id_password1">パスワード:</label>
+      <input type="password" class="form-control" name="password1" placeholder="パスワードを入力してください。" autocomplete="new-password" required="" id="id_password1">
+      <div class="valid-feedback">有効な入力です。</div>
+      <div class="invalid-feedback">このフィールドは入力必須です。</div>
+    </div>
+    <div class="form-group">
+      <label for="id_password2">パスワード (確認用):</label>
+      <input type="password" class="form-control" name="password2" placeholder="パスワードをもう一度入力してください。" required="" id="id_password2">
+      <div class="valid-feedback">有効な入力です。</div>
+      <div class="invalid-feedback">このフィールドは入力必須です。</div>
+    </div>
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+    <button class="btn btn-primary" type="submit">{% trans "新規登録" %} &raquo;</button>
+  </form>
+</div>
 
 {% endblock %}
