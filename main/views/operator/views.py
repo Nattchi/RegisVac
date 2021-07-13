@@ -7,7 +7,7 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.models import Group, User
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from main.forms.operator.forms import MyUserCreationForm, OperatorCreationForm, OperatorRemoveForm
+from main.forms.operator.forms import MyUserCreationForm, OperatorCreationForm, OperatorRemoveForm, JPUserCreationForm
 
 app_name = 'main'
 
@@ -24,7 +24,7 @@ class OperatorListView(LoginRequiredMixin, generic.ListView):
 # まっさらな状態
 class OperatorCreateView(CreateView):
     model = User
-    form_class = MyUserCreationForm
+    form_class = JPUserCreationForm
     template_name = "main/operator/operator_form.html"
     success_url = reverse_lazy('main:operator_list')
 
@@ -32,7 +32,7 @@ class OperatorCreateView(CreateView):
 # 更新画面
 class OperatorUpdateView(UpdateView):
     model = User
-    form_class = MyUserCreationForm
+    form_class = JPUserCreationForm
     template_name = "main/operator/operator_form.html"
     success_url = reverse_lazy('main:operator_list')
 
