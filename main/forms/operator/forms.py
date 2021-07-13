@@ -24,7 +24,7 @@ class JPUserCreationForm(UserCreationForm):
         model = User
         fields = ['id', 'username', 'first_name', 'last_name', 'email', 'is_staff']
         labels = {
-            'username': 'ユーザー名',
+            'username': 'ユーザー名 [必須]',
             'first_name': '姓',
             'last_name': '名',
             'email': 'メールアドレス',
@@ -47,8 +47,8 @@ class JPUserCreationForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # ラベルを日本語化
-        self.fields['password1'].label = 'パスワード'
-        self.fields['password2'].label = '確認用パスワード'
+        self.fields['password1'].label = 'パスワード [必須]'
+        self.fields['password2'].label = '確認用パスワード [必須]'
 
         # エラーメッセージを日本語化
         self.error_messages['password_mismatch'] = '入力された2つのパスワードが一致しません。'
@@ -76,7 +76,7 @@ class JPUserCreationForm(UserCreationForm):
     def clean_email(self):
         email = self.cleaned_data.get("email")
 
-        if not re.match(r"^[\w\-.]+@[\w\-.]+\.[A-Za-z]+$", email):
+        if email and not re.match(r"^[\w\-.]+@[\w\-.]+\.[A-Za-z]+$", email):
             raise ValidationError(
                 self.error_messages['invalid_format_email'],
                 code='invalid_format_email',
