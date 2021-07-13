@@ -13,7 +13,7 @@ from main.models import Operator
 
 def jp_password1_help_text():
     help_texts = ['パスワードは他の個人情報と類似していないものにしてください。', 'パスワードは8文字以上である必要があります。',
-                  'パスワードは一般的に使用されていないものにしなければなりません。', 'パスワードをすべて数学のみにすることはできません。']
+                  'パスワードは一般的に使用されていないものにしなければなりません。', 'パスワードをすべて数字のみにすることはできません。']
     help_items = format_html_join('', '<li>{}</li>', ((help_text,) for help_text in help_texts))
     return format_html('<ul>{}</ul>', help_items) if help_items else ''
 
