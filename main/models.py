@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import Group, User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+import uuid
 
 
 class UserGroup(models.Model):
@@ -30,6 +31,29 @@ class Operator(models.Model):
     def __str__(self):
         return 'Operator Master id:' + str(self.id) + ', username：' + self.user.username + \
                ', Name：' + self.user.first_name + self.user.last_name
+
+
+# 被接種者
+class Recipient(models.Model):
+    class Meta:
+        verbose_name = '被接種者'
+        verbose_name_plural = '被接種者'
+        db_table = 'recipient'
+
+    ID = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for Recipient")
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    date_of_birth = models.DateField(null=True, blank=True)
+    Phonenumber = models.IntegerField(max_length=200)
+    Email_address = models.EmailField(max_length=254)
+    Address = models.CharField(max_length=200)
+    Basic_illness = models.CharField(max_length=200)
+
+    def __str__(self):
+        """
+        String for representing the Model object.
+        """
+        return self.ID
 
 
 # ユーザーモデルと1:1リレーションで同期して登録する
