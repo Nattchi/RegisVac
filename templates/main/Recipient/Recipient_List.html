@@ -1,0 +1,67 @@
+{# Project: RegisVac #}
+
+{% extends "base.html" %}
+{% block title %}被接種者一覧画面-InoGantt{% endblock %}
+
+{% block content %}
+    <div class="col-lg-11 offset-lg-1">
+        <h3>被接種者一覧</h3>
+
+        <section class="post-list">
+            {% if object_list|length == 0 %}
+                <p>データが存在しません。</p>
+            {% else %}
+                <table class="table table-hover table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>接種番号</th>
+                            <th>姓</th>
+                            <th>名</th>
+                            <th>接種状態</th>
+                            <th colspan="2"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for Recipient in object_list %}
+                        <tr>
+                            <td style="width:15%;">{{ Recipient.ID }}</td>
+                            <td style="width:10%;">{{ Recipient.last_name }}</td>
+                            <td style="width:10%;">{{ Recipient.first_name }}</td>
+                            <td style="width:45%;">{{ Recipient.status }}</td>
+                            <td style="width:10%;">
+                                <a href="{% url 'main:recipient_edit' Recipient.ID %}" class="btn btn-info btn-sm">
+                                    編集
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+            </table>
+            {% endif %}
+        </section>
+    </div>
+
+    <hr>
+        <table class="table">
+        <tr>
+            <td style="width:20%;">
+                {# 新規登録ボタン #}
+                <div class="col-md-offset-1 col-md-1">
+                    <a href="{% url 'main:recipient_new' %}" class="btn btn-primary btn-sm">
+                        新規登録
+                    </a>
+                </div>
+            </td>
+            <td style="width:20%;">　</td>
+            <td style="width:20%;">
+                {# 戻るボタン #}
+                <div class="col-md-offset-1 col-md-1">
+                    <a id="top" href="{% url 'main:home' %}" class="btn btn-secondary btn-sm">戻 る</a>
+                </div>
+            </td>
+            <td style="width:40%;">
+            </td>
+        </tr>
+    </table>
+
+{% endblock %}
