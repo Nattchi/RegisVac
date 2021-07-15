@@ -27,7 +27,7 @@
                             <td style="width:15%;">{{ Recipient.ID }}</td>
                             <td style="width:10%;">{{ Recipient.last_name }}</td>
                             <td style="width:10%;">{{ Recipient.first_name }}</td>
-                            <td style="width:45%;">{{ Recipient.status }}</td>
+                            <td style="width:45%;">{{ Recipient.get_status_display }}</td>
                             <td style="width:10%;">
                                 <a href="{% url 'main:recipient_edit' Recipient.ID %}" class="btn btn-info btn-sm">
                                     編集
