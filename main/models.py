@@ -87,18 +87,3 @@ class Venue(models.Model):
 
     def __str__(self):
         return 'Venue Master id:' + str(self.id) + ', Name：' + self.name + '(' + str(self.capacity) + ')'
-
-
-# 接種者マスター
-class Recipient(models.Model):
-    class Meta:
-        verbose_name = '接種者マスター'
-        verbose_name_plural = '接種者マスター'
-        db_table = 'recipient'
-
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    age = models.IntegerField(verbose_name='年齢', default=0, blank=False, null=False)
-    hidden_flag = models.BooleanField(verbose_name='非表示フラグ', default=False, blank=True, null=True)
-
-    def __str__(self):
-        return 'Recipient Master id:' + str(self.id) + ', Name：' + self.user.username
