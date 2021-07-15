@@ -13,10 +13,10 @@ class Home(generic.TemplateView):
         # redirect_url = super(Home, self).get(request, *args, **kwargs)
         context = super(Home, self).get_context_data()
 
-        login_user_name = request.user.first_name + request.user.last_name + 'さん'
-        context.update({
-            'login_user_name': login_user_name,
-        })
+        # login_user_name = request.user.first_name + request.user.last_name + 'さん'
+        # context.update({
+        #     'login_user_name': login_user_name,
+        #})
 
         return render(request, 'home.html', context)
 
